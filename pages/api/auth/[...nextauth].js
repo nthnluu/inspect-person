@@ -12,7 +12,14 @@ const options = {
     ],
 
     // A database is optional, but required to persist accounts in a database
-    database: process.env.DATABASE_URL,
+    database: {
+        type: 'postgres',
+        url: process.env.DATABASE_URL,
+        synchronize: false,
+        ssl: {
+            rejectUnauthorized: false
+        }
+    },
 }
 
 export default (req, res) => NextAuth(req, res, options)
