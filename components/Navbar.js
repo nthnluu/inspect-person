@@ -15,6 +15,7 @@ import ListItem from "@material-ui/core/ListItem";
 import List from "@material-ui/core/List";
 import ListItemText from "@material-ui/core/ListItemText";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
+import { useRouter } from 'next/router'
 
 const useStyles = makeStyles((theme) =>
     createStyles({
@@ -36,6 +37,7 @@ export default function MenuAppBar() {
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
     const [drawer, toggleDrawer] = useState(false)
+    const router = useRouter()
 
 
     const handleMenu = (event) => {
@@ -84,7 +86,7 @@ export default function MenuAppBar() {
                                 onClose={handleClose}
                             >
                                 <MenuItem onClick={handleClose}>Profile</MenuItem>
-                                <MenuItem onClick={() => {handleClose(); window.location.href = '/api/auth/signout'}}>Sign out</MenuItem>
+                                <MenuItem onClick={() => {handleClose(); router.push('/api/auth/signout')}}>Sign out</MenuItem>
                             </Menu>
                         </div>
 
@@ -95,11 +97,11 @@ export default function MenuAppBar() {
             <Drawer anchor="left" open={drawer} onClose={() => toggleDrawer(false)}>
                 <div style={{width: '16rem'}}>
                     <List>
-                        <ListItem button>
+                        <ListItem button onClick={() => router.push('/search')}>
                             <ListItemIcon><SearchIcon/></ListItemIcon>
                             <ListItemText primary="Create new search"/>
                         </ListItem>
-                        <ListItem button>
+                        <ListItem button onClick={() => router.push('/dashboard')}>
                             <ListItemIcon><HistoryIcon/></ListItemIcon>
                             <ListItemText primary="Previous searches"/>
                         </ListItem>
