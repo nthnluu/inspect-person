@@ -53,7 +53,7 @@ export default function MenuAppBar() {
             <div className={classes.root}>
                 <AppBar position="static" color="light">
                     <Toolbar>
-                        <IconButton edge="start" onClick={() => toggleDrawer(true)} className={classes.menuButton} color="inherit" aria-label="menu">
+                        <IconButton edge="start" onClick={() => toggleDrawer(true)} className={classes.menuButton + " focus:outline-none"} color="inherit" aria-label="menu">
                             <MenuIcon/>
                         </IconButton>
                         <Typography variant="h6" className={classes.title}>
@@ -97,11 +97,15 @@ export default function MenuAppBar() {
             <Drawer anchor="left" open={drawer} onClose={() => toggleDrawer(false)}>
                 <div style={{width: '16rem'}}>
                     <List>
-                        <ListItem button onClick={() => router.push('/search')}>
+                        <ListItem button onClick={() => {
+                            handleClose();
+                            router.push('/search')}}>
                             <ListItemIcon><SearchIcon/></ListItemIcon>
                             <ListItemText primary="Create new search"/>
                         </ListItem>
-                        <ListItem button onClick={() => router.push('/dashboard')}>
+                        <ListItem button onClick={() => {
+                            handleClose();
+                            router.push('/dashboard')}}>
                             <ListItemIcon><HistoryIcon/></ListItemIcon>
                             <ListItemText primary="Previous searches"/>
                         </ListItem>

@@ -8,9 +8,9 @@ const Dashboard = () => {
     return (<>
         <Navbar/>
         <Container maxWidth="md">
-            <Typography component="h1" variant="h5">Your Searches</Typography>
+            <Typography component="h1" variant="h6">Your Searches</Typography>
             <Box align="center" m={4}>
-                <img src="/search_list_placeholder.svg" height="200"/>
+                <img src="/search_list_placeholder.svg" className="h-48 mb-6"/>
                 <Typography color="textSecondary">You haven't created a search yet.</Typography>
             </Box>
 
