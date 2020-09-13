@@ -16,6 +16,7 @@ import List from "@material-ui/core/List";
 import ListItemText from "@material-ui/core/ListItemText";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import { useRouter } from 'next/router'
+import LinearProgress from "@material-ui/core/LinearProgress";
 
 const useStyles = makeStyles((theme) =>
     createStyles({
@@ -32,7 +33,7 @@ const useStyles = makeStyles((theme) =>
     }),
 );
 
-export default function MenuAppBar() {
+export default function MenuAppBar({isLoading}) {
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
@@ -52,7 +53,7 @@ export default function MenuAppBar() {
     return (
         <>
             <div className={classes.root}>
-                <AppBar position="static" color="light">
+                <AppBar position="fixed" color="light" >
                     <Toolbar>
                         <IconButton edge="start" onClick={() => toggleDrawer(true)} className={classes.menuButton + " focus:outline-none"} color="inherit" aria-label="menu">
                             <MenuIcon/>
@@ -92,6 +93,8 @@ export default function MenuAppBar() {
                         </div>
 
                     </Toolbar>
+                    {isLoading ? <LinearProgress /> : null}
+
                 </AppBar>
             </div>
 

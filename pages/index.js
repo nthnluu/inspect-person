@@ -1,22 +1,21 @@
 import React from 'react';
-import {getSession} from 'next-auth/client'
+import {getSession, useSession} from 'next-auth/client'
+import Backdrop from "@material-ui/core/Backdrop";
+import CircularProgress from "@material-ui/core/CircularProgress";
+import {useRouter} from "next/router";
 
 export default function Index() {
-    return (
-        <></>
-    );
-}
+    const [ session, loading ] = useSession()
+    const router = useRouter()
 
-export async function getServerSideProps({req, res}) {
-    const session = await getSession({req})
-
-
-    if (session) {
-        res.writeHead(302, {location: '/dashboard'})
-        res.end()
+    if (loading) {
+        return (<Backdrop open={true}>
+            <CircularProgress color="inherit" />
+        </Backdrop>)
+    } else if (session) {
+        window.location.href = '/dashboard'
     } else {
-        res.writeHead(302, {location: '/api/auth/signin'})
-        res.end()
+        router.push('/api/auth/signin')
     }
-
 }
+

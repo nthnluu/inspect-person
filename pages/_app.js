@@ -4,13 +4,14 @@ import Head from 'next/head';
 import {ThemeProvider} from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import theme from '../src/theme';
-import {Provider} from 'next-auth/client'
+import {Provider, useSession} from 'next-auth/client'
 import '../src/styles.css'
 import {ApolloClient, InMemoryCache} from '@apollo/client';
 import {ApolloProvider} from '@apollo/client';
 
 export default function MyApp(props) {
     const {Component, pageProps} = props;
+
 
     React.useEffect(() => {
         // Remove the server-side injected CSS.
