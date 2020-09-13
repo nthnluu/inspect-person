@@ -87,7 +87,6 @@ export default function MenuAppBar({isLoading}) {
                                 open={open}
                                 onClose={handleClose}
                             >
-                                <MenuItem onClick={handleClose}>Profile</MenuItem>
                                 <MenuItem onClick={() => {handleClose(); router.push('/api/auth/signout')}}>Sign out</MenuItem>
                             </Menu>
                         </div>
