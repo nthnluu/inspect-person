@@ -45,6 +45,7 @@ export default function MenuAppBar() {
     };
 
     const handleClose = () => {
+        toggleDrawer(false)
         setAnchorEl(null);
     };
 
