@@ -53,7 +53,7 @@ export default function MenuAppBar({isLoading}) {
     return (
         <>
             <div className={classes.root}>
-                <AppBar position="fixed" color="light" >
+                <AppBar position="fixed" color="inherit" >
                     <Toolbar>
                         <IconButton edge="start" onClick={() => toggleDrawer(true)} className={classes.menuButton + " focus:outline-none"} color="inherit" aria-label="menu">
                             <MenuIcon/>

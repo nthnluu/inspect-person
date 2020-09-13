@@ -4,12 +4,6 @@ import Typography from "@material-ui/core/Typography";
 import SearchList from "../components/SearchList";
 import React, {useState} from "react";
 import {useSession} from "next-auth/client";
-import Box from "@material-ui/core/Box";
-import Paper from "@material-ui/core/Paper";
-import SourceInputPanel from "../components/SourceInputPanel";
-import Button from "@material-ui/core/Button";
-import Fab from "@material-ui/core/Fab";
-import NavigationIcon from '@material-ui/icons/Navigation';
 
 
 const Dashboard = () => {

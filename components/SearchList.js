@@ -9,27 +9,35 @@ import {AllSearches} from "../src/gql/Search";
 import {useRouter} from "next/router";
 import {useSession} from "next-auth/client";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import {useEffect} from "react";
 
 const LoadingPlaceholder = () => {
-    return <div className="text-center mt-12"><CircularProgress /></div>
+    return <div className="text-center mt-12"><CircularProgress/></div>
 }
 
 const ListComponent = ({session, toggleLoading}) => {
     toggleLoading(true)
     const router = useRouter()
-    const { loading, error, data } = useQuery(AllSearches, {variables: {userId: session.id}});
+    const {loading, error, data} = useQuery(AllSearches, {variables: {userId: session.id}});
+
+    useEffect(() => {
+        if (!loading) {
+            toggleLoading(false)
+        }
+    })
 
     if (loading) return <LoadingPlaceholder/>;
     if (error) return `Error! ${error.message}`;
 
-    toggleLoading(false)
+
+
     return (
         <>{data.search.length > 0 ? <Paper className="mt-6">
             <ul className="divide-y">
                 {data.search.map(searchObject => <li key={searchObject.id}>
                     <List component="nav" aria-label="main mailbox folders">
                         <ListItem button onClick={() => router.push('/search/' + searchObject.id)}>
-                            <ListItemText primary={searchObject.title} />
+                            <ListItemText primary={searchObject.title}/>
                         </ListItem>
                     </List>
                 </li>)}
@@ -42,7 +50,7 @@ const ListComponent = ({session, toggleLoading}) => {
 }
 
 const SearchList = ({toggleLoading}) => {
-    const [ session, loading ] = useSession()
+    const [session, loading] = useSession()
 
     if (loading) {
         return <LoadingPlaceholder/>
